@@ -47,9 +47,10 @@ fn main() {
     let mut pan_start_pos = Vector2::zero();
     let mut offset_at_pan_start = Vector2::zero();
 
-    rl.set_target_fps(240);
+    rl.set_target_fps(60);
 
     while !rl.window_should_close() {
+        let start = std::time::Instant::now();
         if rl.is_window_resized() {
             target = rl.load_render_texture(&thread, rl.get_screen_width() as u32, rl.get_screen_height() as u32)
                 .expect("Failed to load render texture after window resize");
@@ -152,5 +153,7 @@ fn main() {
             d.draw_text("Press SPACE to stop animation", 10, 90, 10, Color::RAYWHITE);
             d.draw_text("Press R to reset view", 10, 105, 10, Color::RAYWHITE);
         }
+        let elapsed = start.elapsed().as_secs_f32();
+        d.draw_text(&format!("Frame Time: {:.3} ms | Dimensions: {}x{}", elapsed * 1000.0, d.get_screen_width(), d.get_screen_height()), 10, d.get_screen_height() - 20, 10, Color::RAYWHITE);
     }
 }
