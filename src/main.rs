@@ -9,7 +9,7 @@ const WALL_THICKNESS: f32 = 8.0;
 fn main() {
     let (mut rl, mut thread) = raylib::init()
         .size(INITIAL_SCREEN_WIDTH, INITIAL_SCREEN_HEIGHT)
-        .title("raylib [shaders] example - double slit setup")
+        .title("Double Slit Simulation")
         .resizable()
         .build();
 
